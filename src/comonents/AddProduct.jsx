@@ -39,7 +39,7 @@ export default function AddProduct() {
           <div>
             <label className="block text-gray-600  font-bold my-2"  htmlFor="productName">Price </label>
             <input
-              type="nubmer"
+              type="number"
               name="productName"
               className="px-3 py-1 border border-gray-300 rounded focus:outline-none focus:border-black-500 w-full"
             />

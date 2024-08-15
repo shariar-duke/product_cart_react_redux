@@ -1,7 +1,15 @@
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom"
+import Cart from "./comonents/Cart"
+import Header from "./comonents/Header"
+import Home from "./comonents/Home"
 export default function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <Router>
+      <Header/>
+     <Routes>
+      <Route path="/" element={<Home/>} />
+      <Route path="/cart" element={<Cart/>}  />
+     </Routes>
+    </Router>
   )
 }

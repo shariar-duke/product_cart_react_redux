@@ -1,6 +1,6 @@
 /* eslint-disable no-case-declarations */
 import { initialState } from "../cartList/initialState";
-import { ADDED, DECREASE, INCREASE } from "./actionTypes";
+import { ADDED, DECREASE, INCREASE, REMOVED } from "./actionTypes";
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -62,6 +62,11 @@ const reducer = (state = initialState, action) => {
         }
         else return state
       } 
+
+    case REMOVED : 
+     
+     const newCartList = state.filter((product) => product.id !== action.payload)
+     return newCartList
       
       
 

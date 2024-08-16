@@ -2,7 +2,7 @@
 
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
-import { decrease as cartProcutDecrease, increase as cartProcutIncrease } from "../redux/cartList/actions";
+import { decrease as cartProcutDecrease, increase as cartProcutIncrease, remove } from "../redux/cartList/actions";
 import { decrease, increase } from "../redux/productList/actions";
 export default function CartItem({cart}) {
 
@@ -35,6 +35,15 @@ export default function CartItem({cart}) {
        }
        
     }
+
+
+    // for deelteing the cart 
+
+    const handleDeleteCart =()=> 
+    {
+      dispatch(remove(cart.id))
+    }
+    
   return (
     <div className="border border-gray-200 shadow-lg rounded-lg flex  p-[14px]  items-center">
        <div className="flex flex-1 gap-[12px]">
@@ -50,7 +59,7 @@ export default function CartItem({cart}) {
         <p className="text-[20px] font-medium cursor-pointer">{cart?.quantity}</p>
         <p onClick={decreaseCartItemHandler}  className="text-[20px] font-medium cursor-pointer">-</p>
        </div>
-       <RiDeleteBin6Line className="cursor-pointer" color="red"  size={26}/>
+       <RiDeleteBin6Line onClick={handleDeleteCart} className="cursor-pointer" color="red"  size={26}/>
     </div>
   )
 }

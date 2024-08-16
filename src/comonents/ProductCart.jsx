@@ -1,14 +1,20 @@
 /* eslint-disable react/prop-types */
- 
-export default function ProductCart({product}) {
 
+export default function ProductCart({ product }) {
+  // eslint-disable-next-line no-unused-vars
+  const { imgUrl } = product;
 
-   const backgroundImageStyle = {
-     backgroundImage:`url(${product.imgUrl})`
-   }
+  const backgroundImageStyle = {
+    backgroundImage: `url(${product?.imgUrl ?? ""})`,
+  };
+
+  console.log;
   return (
     <div className="shadow-2xl rounded-md  max-h-[330px]">
-     <div className="h-[160px] max:w-[280px]  bg-cover bg-center rounded-md" style={backgroundImageStyle}></div>
+      <div
+        className="h-[160px] max:w-[280px]  bg-cover bg-center rounded-md"
+        style={backgroundImageStyle}
+      ></div>
 
       <div className="mt-[30px] p-[10px]">
         <p className="text-[16px] font-bold">{product?.productName}</p>

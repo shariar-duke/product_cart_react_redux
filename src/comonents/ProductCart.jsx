@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useDispatch } from "react-redux";
 import { added } from "../redux/cartList/actions";
+import { decrease } from "../redux/productList/actions";
 export default function ProductCart({ product }) {
   const dispatch = useDispatch();
 
@@ -10,6 +11,7 @@ export default function ProductCart({ product }) {
 
   const handleProducAdd = () => {
     dispatch(added(product));
+    dispatch(decrease(product.id))
   };
 
   console.log;
@@ -29,6 +31,7 @@ export default function ProductCart({ product }) {
         </div>
         <button
           onClick={handleProducAdd}
+          disabled={product.quantity<1 ? true :false}
           className="text-white text-[14px] font-bold text-lg mt-2 bg-gray-800 hover:bg-gray-900 active:bg-black w-full py-[4px] rounded-md shadow-md cursor-pointer transition-all duration-200"
         >
           Add Product

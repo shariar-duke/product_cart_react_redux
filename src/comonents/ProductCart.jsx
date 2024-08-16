@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 
 export default function ProductCart({ product }) {
-  // eslint-disable-next-line no-unused-vars
+   
   const { imgUrl } = product;
+
 
   const backgroundImageStyle = {
     backgroundImage: `url(${product?.imgUrl ?? ""})`,

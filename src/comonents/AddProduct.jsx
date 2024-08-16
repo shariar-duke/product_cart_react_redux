@@ -26,7 +26,8 @@ export default function AddProduct() {
     e.preventDefault();
     console.log("Current form status is", state)
     dispatch(added(state))
-    
+
+  
   };
   return (
     <div className="max-w-[400px] rounded-md p-[20px] shadow-xl">

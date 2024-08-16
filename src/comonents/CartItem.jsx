@@ -1,12 +1,26 @@
 /* eslint-disable react/prop-types */
 
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { useDispatch } from "react-redux";
+import { decrease, increase } from "../redux/productList/actions";
 export default function CartItem({cart}) {
-
+   
+    const dispatch = useDispatch()
     const backgroundImageStyle = {
         backgroundImage: `url(${cart?.imgUrl ?? ""})`,
       };
     
+
+    const  increaseCartItemHandler =()=> 
+    {
+       dispatch(decrease(cart.id)) // cart a barale home page thke komb
+    }
+
+
+    const decreaseCartItemHandler =() => 
+    {
+        dispatch(increase(cart.id)) // cart a komale home page a barbe
+    }
   return (
     <div className="border border-gray-200 shadow-lg rounded-lg flex  p-[14px]  items-center">
        <div className="flex flex-1 gap-[12px]">
@@ -18,9 +32,9 @@ export default function CartItem({cart}) {
          </div>
        </div>
        <div className="flex flex-1  gap-[14px]">
-        <p className="text-[20px] font-medium cursor-pointer">+</p>
+        <p onClick={increaseCartItemHandler} className="text-[20px] font-medium cursor-pointer">+</p>
         <p className="text-[20px] font-medium cursor-pointer">{cart?.quantity}</p>
-        <p className="text-[20px] font-medium cursor-pointer">-</p>
+        <p onClick={decreaseCartItemHandler}  className="text-[20px] font-medium cursor-pointer">-</p>
        </div>
        <RiDeleteBin6Line className="cursor-pointer" color="red"  size={26}/>
     </div>

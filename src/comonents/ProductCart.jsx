@@ -1,12 +1,15 @@
 /* eslint-disable react/prop-types */
-
+import { useDispatch } from "react-redux";
+import { added } from "../redux/cartList/actions";
 export default function ProductCart({ product }) {
-   
-  const { imgUrl } = product;
-
+  const dispatch = useDispatch();
 
   const backgroundImageStyle = {
     backgroundImage: `url(${product?.imgUrl ?? ""})`,
+  };
+
+  const handleProducAdd = () => {
+    dispatch(added(product));
   };
 
   console.log;
@@ -24,7 +27,10 @@ export default function ProductCart({ product }) {
           <p className="text-[14px] font-bold">BDT {product?.price}</p>
           <p className="text-[14px] font-bold">QTY {product?.quantity} </p>
         </div>
-        <button className="text-white text-[14px] font-bold text-lg mt-2 bg-gray-800 hover:bg-gray-900 active:bg-black w-full py-[4px] rounded-md shadow-md cursor-pointer transition-all duration-200">
+        <button
+          onClick={handleProducAdd}
+          className="text-white text-[14px] font-bold text-lg mt-2 bg-gray-800 hover:bg-gray-900 active:bg-black w-full py-[4px] rounded-md shadow-md cursor-pointer transition-all duration-200"
+        >
           Add Product
         </button>
       </div>

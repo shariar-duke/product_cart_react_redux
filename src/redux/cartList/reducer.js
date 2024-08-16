@@ -1,6 +1,6 @@
 /* eslint-disable no-case-declarations */
 import { initialState } from "../cartList/initialState";
-import { ADDED } from "./actionTypes";
+import { ADDED, DECREASE, INCREASE } from "./actionTypes";
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -22,6 +22,48 @@ const reducer = (state = initialState, action) => {
       } else {
         return [...state, { ...action.payload, quantity: 1 }];
       }
+
+      case INCREASE: 
+      {
+        const index = state.findIndex(
+          (product) => product.id === action.payload
+        );
+
+        if(index !== -1)
+        {
+          const currentQuantity = state[index].quantity;
+          const newState = [...state];
+          newState[index] = {
+            ...state[index],
+            quantity: currentQuantity + 1,
+          };
+
+        return newState
+        }
+        else return state
+      } 
+      
+      case DECREASE: 
+      {
+        const index = state.findIndex(
+          (product) => product.id === action.payload
+        );
+
+        if(index !== -1)
+        {
+          const currentQuantity = state[index].quantity;
+          const newState = [...state];
+          newState[index] = {
+            ...state[index],
+            quantity: currentQuantity - 1,
+          };
+
+        return newState
+        }
+        else return state
+      } 
+      
+      
 
     default:
       return state;

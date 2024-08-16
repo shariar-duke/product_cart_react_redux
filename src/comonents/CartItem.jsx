@@ -1,10 +1,12 @@
 /* eslint-disable react/prop-types */
 
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { decrease as cartProcutDecrease, increase as cartProcutIncrease } from "../redux/cartList/actions";
 import { decrease, increase } from "../redux/productList/actions";
 export default function CartItem({cart}) {
-   
+
+  const products = useSelector((state) => state.product);
     const dispatch = useDispatch()
     const backgroundImageStyle = {
         backgroundImage: `url(${cart?.imgUrl ?? ""})`,
@@ -13,13 +15,25 @@ export default function CartItem({cart}) {
 
     const  increaseCartItemHandler =()=> 
     {
-       dispatch(decrease(cart.id)) // cart a barale home page thke komb
+       const currentProdct = products.find((product) => product.id === cart.id)
+       if(currentProdct.quantity > 0) 
+       {
+
+        dispatch(decrease(cart.id)) // cart a barale home page thke komb
+        dispatch(cartProcutIncrease(cart.id)) // increase number of product in cart
+       }
+
     }
 
 
     const decreaseCartItemHandler =() => 
     {
+       if(cart.quantity > 0) 
+       {
         dispatch(increase(cart.id)) // cart a komale home page a barbe
+        dispatch(cartProcutDecrease(cart.id)) // eta cart er product number decreae korabe
+       }
+       
     }
   return (
     <div className="border border-gray-200 shadow-lg rounded-lg flex  p-[14px]  items-center">

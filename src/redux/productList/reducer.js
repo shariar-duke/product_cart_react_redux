@@ -1,4 +1,4 @@
-import { ADDED, DECREASE, INCREASE } from "./actionTypes";
+import { ADDED, DECREASE, INCREASE, RESTORED } from "./actionTypes";
 import { initialState } from "./initialState";
 
 // Function to calculate the next product ID
@@ -41,12 +41,28 @@ const reducer = (state = initialState, action) => {
             if (index !== -1) {
                 const newState = [...state];
                 newState[index] = {
-                    ...newState[index],
+                    ...state[index],
                     quantity: state[index].quantity -1
                 };
                 return newState;
             }
             return state;
+        }
+
+        case RESTORED : {
+            const index = findIndex(state, action.payload.id);
+            if( index !== -1) 
+            {
+                const newState =[...state];
+                newState[index] ={ 
+                     ...state[index],
+                     quantity : state[index].quantity + action.payload.numberOfProduct
+
+                }
+
+                return newState
+            }
+            return state
         }
 
         default:

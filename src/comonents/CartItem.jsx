@@ -3,7 +3,7 @@
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { decrease as cartProcutDecrease, increase as cartProcutIncrease, remove } from "../redux/cartList/actions";
-import { decrease, increase } from "../redux/productList/actions";
+import { decrease, increase, restored } from "../redux/productList/actions";
 export default function CartItem({cart}) {
 
   const products = useSelector((state) => state.product);
@@ -42,8 +42,9 @@ export default function CartItem({cart}) {
     const handleDeleteCart =()=> 
     {
       dispatch(remove(cart.id))
+      dispatch(restored(cart.id, cart.quantity))
     }
-    
+
   return (
     <div className="border border-gray-200 shadow-lg rounded-lg flex  p-[14px]  items-center">
        <div className="flex flex-1 gap-[12px]">

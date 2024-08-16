@@ -24,7 +24,7 @@ export default function AddProduct() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Current form status is", state)
+  
     dispatch(added(state))
 
   

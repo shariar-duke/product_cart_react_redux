@@ -3,7 +3,12 @@ import CartItem from "./CartItem";
 import PriceBox from "./PriceBox";
 export default function Cart() {
   const allCarts = useSelector((state) => state.cart);
-  console.log("All the carts are", allCarts);
+
+  const totalPrice = allCarts.reduce((initial, product) => initial + (Number(product.quantity) * Number(product.price)), 0);
+
+  console.log(totalPrice)
+  
+console.log("All carts are ", allCarts)
   return (
     <div className="mt-[120px] px-[30px] grid grid-cols-3 gap-[36px]">
       <div className="col-span-2">
@@ -14,7 +19,7 @@ export default function Cart() {
         </div>
       </div>
       <div className="col-span-1">
-        <PriceBox />
+        <PriceBox totalPrice ={totalPrice} />
       </div>
     </div>
   );

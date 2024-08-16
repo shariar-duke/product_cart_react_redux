@@ -30,7 +30,7 @@ export const restored =(productId, numberOfProduct)=>
     return {
         type: RESTORED,
         payload: {
-          productId,
+         id: productId,
           numberOfProduct
         }
     }

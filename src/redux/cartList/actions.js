@@ -1,4 +1,4 @@
-import { ADDED } from "./actionTypes";
+import { ADDED, DECREASE, INCREASE, REMOVED } from "./actionTypes";
 
 // This is for add product  in the Cart
 
@@ -12,30 +12,30 @@ export const added = (product) => {
 
 // This is for remove  product  in the Cart
 
-export const remove = (product) => {
+export const remove = (productId) => {
 
     return {
-       type : ADDED, 
-       payload: product
+       type : REMOVED, 
+       payload: productId
     }
 }
 
 // This is for increase  product  in the Cart
 
-export const increase = (product) => {
+export const increase = (productId) => {
 
     return {
-       type : ADDED, 
-       payload: product
+       type : INCREASE, 
+       payload: productId
     }
 }
 
 // This is for decrease  product  in the Cart
 
-export const decrease = (product) => {
+export const decrease = (productId) => {
 
     return {
-       type : ADDED, 
-       payload: product
+       type : DECREASE, 
+       payload: productId
     }
 }
